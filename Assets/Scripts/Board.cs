@@ -98,6 +98,7 @@ public class Board : MonoBehaviour {
 		var already = new List<Cube> ();
 		cube.Blink ();
 		Push (new List<Cube> { cube }, already, 0.0f);
+		AudioManager.Instance.PlayWaveSFX ();
 	}
 
 	void Push(List<Cube> cubes, List<Cube> already, float delay) {

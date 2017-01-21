@@ -46,6 +46,7 @@ public class Activity : MonoBehaviour {
 
 		RandomSkybox ();
 		CameraTarget.BackToDefault ();
+		AudioManager.Instance.PlayBGM ();
 	}
 
 	void RandomSkybox() {
@@ -62,6 +63,7 @@ public class Activity : MonoBehaviour {
 			HUD.Alert("You win.", "Next", () => {
 				Start();
 			});
+			AudioManager.Instance.PlayYouWin ();
 		}
 
 	}
@@ -72,6 +74,7 @@ public class Activity : MonoBehaviour {
 			return;
 
 		GameOver ();
+		AudioManager.Instance.PlayYouLose ();
 
 	}
 
