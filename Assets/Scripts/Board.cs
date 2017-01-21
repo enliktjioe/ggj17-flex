@@ -16,17 +16,19 @@ public class Board : MonoBehaviour {
 	public const int Row = 20;
 	public const int Column = 20;
 
-	public float AditionDelay = 0.1f;
+	public float AditionDelay = 0.2f;
 
 
 	public Cube[,] Cubes;
 
 	public GameObject MasterCube;
+	public Level Level;
 
 	// Use this for initialization
 	void Start () {
 		
 		CreateBoard ();
+		HighlightGoalArea ();
 
 	}
 
@@ -53,6 +55,26 @@ public class Board : MonoBehaviour {
 		}
 
 		MasterCube.SetActive (false);
+
+	}
+
+	void HighlightGoalArea() {
+
+		for (int i = 0; i < Row; i++) {
+			for (int j = 0; j < Column; j++) {
+
+				var cube = Cubes [j, i];
+				if (cube == null)
+					continue;
+				
+				var bounds1 = cube.gameObject.GetComponent<Renderer>().bounds;
+				var bounds2 = Level.Goal.gameObject.GetComponent<Renderer>().bounds;
+				if (!bounds1.Intersects (bounds2))
+					continue;
+
+				cube.SetAsGoal ();
+			}
+		}
 
 	}
 

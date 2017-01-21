@@ -7,11 +7,25 @@ public class Cube : MonoBehaviour {
 
 	public float WaveMax = 1.0f;
 	public float WavePower = 5f;
+	public Material GoalMaterial;
 
 	public Action<Cube> OnSelected;
 
 	public int Column { get; private set; }
 	public int Row { get; private set; }
+	public bool IsGoal { get; private set; }
+
+//	void Update() {
+//		
+//		if ( Input.GetMouseButtonDown (0) && !UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject()){ 
+//			RaycastHit hit; 
+//			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); 
+//			if (Physics.Raycast (ray,out hit,100.0f)) {
+//				if (hit.transform.gameObject == gameObject && OnSelected != null)			
+//					OnSelected (this);
+//			}
+//		}
+//	}
 
 	public void SetCoordinate(int column, int row) {
 		Column = column;
@@ -62,9 +76,17 @@ public class Cube : MonoBehaviour {
 
 	}
 
+	public void SetAsGoal() {
+
+		IsGoal = true;
+		gameObject.GetComponent<Renderer>().material = GoalMaterial;
+
+	}
+
 	void OnMouseOver() {
-		if(Input.GetMouseButtonDown(0)){
-			if (OnSelected != null)
+		if(Input.GetMouseButtonDown(0) 
+			&& !UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject() 
+			&& OnSelected != null){
 				OnSelected (this);
 		}
 	}
