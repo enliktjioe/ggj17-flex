@@ -51,11 +51,11 @@ public class AudioManager : MonoBehaviour {
 	}
 
 	public void PlayYouWin () {
-		audio.PlayOneShot (YouWinSFX);
+//		audio.PlayOneShot (YouWinSFX);
 	}
 
 	public void PlayYouLose () {
-		audio.PlayOneShot (YouLoseSFX);
+//		audio.PlayOneShot (YouLoseSFX);
 	}
 
 	public void PlayClickSFX () {
