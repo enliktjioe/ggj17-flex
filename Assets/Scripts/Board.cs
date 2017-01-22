@@ -18,6 +18,8 @@ public class Board : MonoBehaviour {
 
 	public float AditionDelay = 0.2f;
 
+	public AudioClip MoveSound;
+
 	public Action OnLastPush;
 
 	public Cube[,] Cubes;
@@ -86,6 +88,8 @@ public class Board : MonoBehaviour {
 
 		if (HUD.PushLeft == 0)
 			return;
+
+		HUD.DismissTutorial ();
 
 		HUD.PushLeft--;
 		Push (cube);

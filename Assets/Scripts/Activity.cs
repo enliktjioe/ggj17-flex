@@ -46,7 +46,10 @@ public class Activity : MonoBehaviour {
 
 		RandomSkybox ();
 		CameraTarget.BackToDefault ();
-		AudioManager.Instance.PlayBGM ();
+
+		HUD.ShowTutorial ();
+
+			
 	}
 
 	void RandomSkybox() {
@@ -60,10 +63,9 @@ public class Activity : MonoBehaviour {
 		HUD.BallCount++;
 		if (Level.Balls.Count == 1) {
 			CameraTarget.BackToDefault ();
-			HUD.Alert("You win.", "Next", () => {
+			HUD.Alert("Good job!", "Next", () => {
 				Start();
 			});
-			AudioManager.Instance.PlayYouWin ();
 		}
 
 	}
@@ -74,13 +76,12 @@ public class Activity : MonoBehaviour {
 			return;
 
 		GameOver ();
-		AudioManager.Instance.PlayYouLose ();
 
 	}
 
 	void GameOver() {
 		CameraTarget.BackToDefault ();
-		HUD.Alert ("GameOver.", "I want to play again.", () => {
+		HUD.Alert ("GameOver.", "Play again.", () => {
 			_level = 0;
 			Start();
 		});
